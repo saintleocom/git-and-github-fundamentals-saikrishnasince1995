@@ -1,0 +1,129 @@
+create table user_tbl(
+	treat_id   int PRIMARY KEY,
+	treat_type	varchar(50)
+);
+
+create table patients(
+   patients_id int PRIMARY KEY,
+   fname varchar(50),
+   lname varchar(50),
+   patient_type varchar(50),
+   age int,
+   adress varchar(50),
+   treat_id int,
+   FOREIGN KEY (treat_id) REFERENCES user_tbl(treat_id)
+);
+   
+create table Admission(
+   check_id int PRIMARY KEY,
+   patient_id  int,
+   complains  varchar(50),
+   findings  varchar(50),
+   treat_id  int,
+   med_id    int,
+   quantity int,
+   admission_date   date,
+   equip_id varchar(50),
+   FOREIGN KEY (patient_id) REFERENCES patients(patient_id),
+   FOREIGN KEY (treat_id) REFERENCES user_tbl(treat_id)
+);
+   
+   
+create table treatment(
+   med_id  int PRIMARY KEY,
+   med_name varchar(50),
+   quantity  int,
+   available_qty  int,
+   descrption  varchar(50),
+   expiry_date  date,
+   requested_date  date
+);
+   
+   
+create table employee(
+  equip_id  int PRIMARY KEY,
+  equip_name varchar(50),
+  requested_date  date,
+  date_detected date
+);
+   
+  
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (1,'diabates');
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (2,'biological');
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (3,'hormonal');
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (4,'behaviour');
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (5,'cognitive');
+INSERT INTO `user_tbl`(`treat_id`,`treat_type` ) VALUES (6,'humansitic');
+   
+  
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (1,'hom','zling','diabates','33','mlkd',1);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (2,'hari','priya','biological','33','mlkd',2);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (3,'kishan','srujana','hormonal','33','mlkd',3);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (4,'mani','kathi','behaviour','33','mlkd',4);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (5,'josh','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (6,'pragra','preethi','digestive','33','mlkd',6);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (7,'karti','harsha','heatstroke','33','mlkd',7);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (8,'jamu,','harini','backache','33','mlkd',8);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (9,'isha','bubu','eyeinfection','33','mlkd',9);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (10,'kierthi','chitti','cognitive','33','mlkd',10);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (11,'kiappa','humaid','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (12,'smach','harsha','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (13,'umaid','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (14,'umaaid','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (15,'umran','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (16,'sanju','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (17,'chalal','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (18,'ashwin','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (19,'dgoni','hazelwood','cognitive','33','mlkd',5);
+INSERT INTO `patients`(`patients_id`, `fname`, `lname` , `patient_type` , `age` ,`adress` ,`treat_id`) values (20,'dravid','hazelwood','cognitive','33','mlkd',5);
+
+
+
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'diabates',' Asthma',1,1, 1, '2022-09-29',1);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(2,1,'biological',' throat infection',2,2,2, '2022-01-28',2);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(3,1,'hormonal',' lung disorder',2,4,3, '2022-05-21',3);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(4,1,'behaviour',' breath sounds',3,1, 4, '2022-06-20',4);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(5,1,'cognitive',' headache',5,1,5, '2022-5-18',5);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'diabates',' Asthma',1,1, 1, '2022-09-29',6);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'biological',' Asthma',1,1, 1, '2022-09-29',7);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'diabates',' Asthma',1,1, 1, '2022-09-29',8);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'behaviour',' Asthma',1,1, 1, '2022-09-29',9);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'cognative',' Asthma',1,1, 1, '2022-09-29',10);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'behaviour',' Asthma',1,1, 1, '2022-09-29',11`);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'diabates',' Asthma',1,1, 1, '2022-09-29',12);
+INSERT INTO `Admission`(`check_id`,`patient_id`,`complains`,`findings`,`treat_id` ,`med_id`,`quantity`,`admission_date`,`equip_id`) values(1,1,'diabates',' Asthma',1,1, 1, '2022-09-29',13);
+
+
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(247,'catillac',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(251,'catillac2',247,40,'bonebreak','2022-08-01','2022-09-2');	
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(252,'catillac3',248,41,'surgery','2022-07-01','2022-08-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(253,'catillac4',249,42,'surgery','2022-06-01','2022-07-2');	
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(254,'catillac5',250,43,'surgery','2022-03-01','2022-04-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(247,'catillac6',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(248,'catillac7',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(249,'catillac8',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(240,'catillac9',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(242,'catillac10',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(241,'catillac11',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(289,'catillac12',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(290,'catillac13',246,39,'surgery','2022-09-01','2022-10-2');
+INSERT INTO `treatment`(`med_id`,`med_name`,`quantity`,`available_qty`,`descrption`,`expiry_date`,`requested_date`)values(291,'catillac14',246,39,'surgery','2022-09-01','2022-10-2');
+			
+
+
+INSERT INTO `employee`(`equip_id`,`equip_name`,`requested_date`,`date_detected`)values(247,'lancer','2022-05-22','2006-06-22');
+INSERT INTO `employee`(`equip_id`,`equip_name`,`requested_date`,`date_detected`)values(250,'jiping','2022-06-22','2006-07-22');
+INSERT INTO `employee`(`equip_id`,`equip_name`,`requested_date`,`date_detected`)values(251,'king','2022-07-22','2006-08-22');
+INSERT INTO `employee`(`equip_id`,`equip_name`,`requested_date`,`date_detected`)values(252,'koti','2022-08-22','2006-09-22');
+INSERT INTO `employee`(`equip_id`,`equip_name`,`requested_date`,`date_detected`)values(253,'cartic','2022-09-22','2006-10-22');
+
+
+
+
+
+
+
+
+
+
+
